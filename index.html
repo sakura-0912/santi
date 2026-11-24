@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080909">
+  <meta name="description" content="三体·倒计时：科幻悬疑调查、文明模拟与古筝行动规划">
+  <title>三体 · 倒计时</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-photo" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M7 15l3-4 2.4 3 2-2.4L18 16H7Z" fill="currentColor" opacity=".55"/>
+        <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" opacity=".7"/>
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4.2" fill="currentColor" opacity=".85"/>
+        <g stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/>
+        </g>
+      </symbol>
+      <symbol id="i-dish" viewBox="0 0 24 24">
+        <path d="M4 18h16M6 18c1-6 4-9 8-9s7 3 8 9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M12 9V4M9.5 4h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="12" cy="15" r="1.6" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-ship" viewBox="0 0 24 24">
+        <path d="M3 16h18l-2.5 4h-13L3 16Z" fill="currentColor" opacity=".45"/>
+        <path d="M7 16V9h10v7M10 9V6h4v3M12 6V3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      </symbol>
+      <symbol id="i-bug" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="13" rx="4" ry="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M12 6.5V4M8 9 5 6M16 9l3-3M8 13H4M16 13h4M8 17l-3 3M16 17l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-wave" viewBox="0 0 24 24">
+        <path d="M2 12h3l2-6 3 12 3-9 2 5 2-2h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="12" cy="12" r="2.6" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-seal" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24">
+        <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M8 15h8" stroke="currentColor" stroke-width="1.2" opacity=".7"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <section id="titleScreen" class="screen title-screen">
+    <div class="title-stars" aria-hidden="true"></div>
+    <div class="title-sun title-sun-a" aria-hidden="true"></div>
+    <div class="title-sun title-sun-b" aria-hidden="true"></div>
+    <div class="title-sun title-sun-c" aria-hidden="true"></div>
+    <div class="title-grain" aria-hidden="true"></div>
+    <div class="title-inner">
+      <p class="eyebrow">绝密 · 地球往事档案 001</p>
+      <h1>三体<span class="title-dot">·</span>倒计时</h1>
+      <p class="title-sub">一次关于信息、信任与不可逆选择的调查</p>
+      <div class="title-rule"><span></span><b>1200:00:00</b><span></span></div>
+      <div class="title-actions">
+        <button id="newGameBtn" class="btn btn-primary" data-testid="new-game">开始调查</button>
+        <button id="continueBtn" class="btn btn-ghost hidden" data-testid="continue">继续档案</button>
+        <button id="galleryBtn" class="btn btn-ghost" data-testid="gallery">结局档案</button>
+      </div>
+      <div class="title-meta">
+        <button id="titleHelpBtn" class="link-btn">操作说明</button>
+        <button id="titleSoundBtn" class="link-btn">声音：开</button>
+      </div>
+      <p class="title-note">仅个人游玩，不传播。改编自刘慈欣《三体》第一部。</p>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen game-screen hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="chapter-kicker" id="chapterKicker">序章</div>
+        <div class="chapter-title" id="chapterTitle">科学边界</div>
+      </div>
+      <div class="status-strip" id="statusStrip">
+        <div class="status-item" title="洞察">
+          <span class="status-label">洞察</span>
+          <span class="status-value" id="insightValue">旁证</span>
+        </div>
+        <div class="status-item" title="军方信任">
+          <span class="status-label">军方</span>
+          <span class="status-value" id="shiValue">被监视</span>
+        </div>
+        <div class="status-item" title="ETO 关注">
+          <span class="status-label">ETO</span>
+          <span class="status-value" id="etoValue">未入名单</span>
+        </div>
+        <div class="status-item danger" title="暴露度">
+          <span class="status-label">回声</span>
+          <span class="status-value" id="exposureValue">安全</span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="caseBtn" class="icon-btn" aria-label="打开证据夹" data-testid="open-case">
+          <svg class="icon"><use href="#i-seal"></use></svg>
+          <span id="clueCount">0</span>
+        </button>
+        <button id="soundBtn" class="icon-btn" aria-label="切换声音" data-testid="sound">声</button>
+        <button id="menuBtn" class="icon-btn" aria-label="菜单" data-testid="menu">☰</button>
+      </div>
+    </header>
+
+    <div class="game-layout">
+      <main id="stage" class="stage" data-testid="stage">
+        <div class="stage-art" id="stageArt" aria-hidden="true"></div>
+        <div class="stage-vignette" aria-hidden="true"></div>
+        <div class="stage-location">
+          <span id="stagePlace">北京 · 2007</span>
+          <span id="stageTime">夜</span>
+        </div>
+        <div class="stage-content" id="stageContent"></div>
+        <div class="stage-caption" id="stageCaption"></div>
+      </main>
+      <aside class="case-panel" id="casePanel" aria-label="证据夹">
+        <div class="case-head">
+          <div>
+            <p class="case-kicker">CASE FILE</p>
+            <h2>证据夹</h2>
+          </div>
+          <button id="caseCloseBtn" class="icon-btn case-close" aria-label="关闭证据夹">×</button>
+        </div>
+        <div class="case-stats" id="caseStats"></div>
+        <div class="case-list" id="caseList"></div>
+        <div class="case-foot" id="caseFoot"></div>
+      </aside>
+    </div>
+
+    <footer class="dialogue-panel" id="dialoguePanel">
+      <div class="speaker-line">
+        <span class="speaker-seal" id="speakerSeal">叙</span>
+        <div>
+          <div class="speaker-name" id="speakerName">旁白</div>
+          <div class="speaker-role" id="speakerRole"></div>
+        </div>
+      </div>
+      <div class="dialogue-text" id="dialogueText"></div>
+      <div class="dialogue-actions" id="dialogueActions"></div>
+      <button id="advanceBtn" class="advance-btn" aria-label="继续" data-testid="advance">
+        <span>继续</span>
+        <b>›</b>
+      </button>
+    </footer>
+  </section>
+
+  <section id="endingScreen" class="screen ending-screen hidden">
+    <div class="ending-art" id="endingArt" aria-hidden="true"></div>
+    <div class="ending-vignette" aria-hidden="true"></div>
+    <div class="ending-inner">
+      <p class="ending-kicker" id="endingKicker">结局</p>
+      <h1 id="endingTitle">虫子</h1>
+      <div class="ending-seal" id="endingSeal">存</div>
+      <p class="ending-quote" id="endingQuote"></p>
+      <div class="ending-text" id="endingText"></div>
+      <div class="ending-stats" id="endingStats"></div>
+      <div class="ending-actions">
+        <button id="endingReplayBtn" class="btn btn-primary" data-testid="replay">回到标题</button>
+        <button id="endingFinaleBtn" class="btn btn-ghost hidden" data-testid="retry-finale">重开终局</button>
+        <button id="endingGalleryBtn" class="btn btn-ghost" data-testid="ending-gallery">结局档案</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <div id="modalRoot" class="modal-root hidden"></div>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="./rules.js"></script>
+  <script src="./game.js"></script>
+</body>
+</html>
